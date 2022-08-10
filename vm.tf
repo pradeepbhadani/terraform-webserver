@@ -1,9 +1,9 @@
-data "google_compute_image" "debian" {
-  family  = "ubuntu-1804-lts"
-  project = "gce-uefi-images"
+data "google_compute_image" "ubuntu" {
+  family  = "ubuntu-2204-lts"
+  project = "ubuntu-os-cloud"
 }
 
-# Creates a GCP VM Instance.
+# Creates a GCP VM Instance. Metadata Startup script install the Nginx webserver.
 resource "google_compute_instance" "vm" {
   name         = var.name
   machine_type = var.machine_type
@@ -13,7 +13,7 @@ resource "google_compute_instance" "vm" {
 
   boot_disk {
     initialize_params {
-      image = data.google_compute_image.debian.self_link
+      image = data.google_compute_image.ubuntu.self_link
     }
   }
 
