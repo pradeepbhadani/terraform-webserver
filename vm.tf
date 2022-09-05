@@ -25,13 +25,20 @@ resource "google_compute_instance" "vm" {
   }
 
   metadata_startup_script = data.template_file.nginx.rendered
+  service_account {
+    email  = google_service_account.storage.email
+    scopes = ["storage-rw"]
+  }
+  depends_on = [google_storage_bucket_object.webpage]
 }
 
 data "template_file" "nginx" {
-  template = "${file("${path.module}/template/install_nginx.tpl")}"
+  template = file("${path.module}/template/install_nginx.tpl")
 
   vars = {
     ufw_allow_nginx = "Nginx HTTP"
+    bucket_name     = google_storage_bucket.webserver_config.name
+    webpage_path    = local.webpage_path
   }
 }
 

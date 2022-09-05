@@ -29,5 +29,5 @@ variable "machine_type" {
 
 variable "labels" {
   description = "List of labels to attach to the VM instance."
-  type        = map
+  type        = map(any)
 }
