@@ -1,6 +1,6 @@
 # Terraform Webserver
 Terraform scripts to deploy Nginx web server.  
-This repository contains code used in this [blog](https://pbhadani.com/posts/deploy-webserver-compute-instance/)
+Version [v0.1](https://github.com/pradeepbhadani/terraform-webserver/tree/v0.1) contains code used in this [blog](https://pbhadani.com/posts/deploy-webserver-compute-instance/)
 
 # How to Run?
 
