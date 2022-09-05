@@ -1,5 +1,9 @@
 #!/bin/bash
 set -e
+
+BUCKET_NAME=${bucket_name}
+WEBPAGE_PATH=${webpage_path}
+
 echo "*****    Installing Nginx    *****"
 apt update
 apt install -y nginx
@@ -9,6 +13,8 @@ systemctl restart nginx
 
 echo "*****   Installation Complteted!!   *****"
 
-echo "Welcome to Google Compute VM Instance deployed using Terraform!!!" > /var/www/html/index.html
+echo "*****   Getting Webpage from GCS    *****"
+gsutil cp gs://$BUCKET_NAME/$WEBPAGE_PATH /var/www/html/
+
 
 echo "*****   Startup script completes!!    *****"
